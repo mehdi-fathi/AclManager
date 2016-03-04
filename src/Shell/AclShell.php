@@ -295,7 +295,7 @@
 				*
 				*          2.this method is for create root (name of plugin) for plugin as such as : create plugin AclManager 
 				*
-				*          3.this method is for create root (name of controller) for plugin as such as : create controller AclManager users 
+				*          3.this method is for create root (name of controller) for plugin as such as : create controller users 
 				*
 				*          4.this method is for create root (action of controller) for plugin as such as : create controller users index
 				*         
