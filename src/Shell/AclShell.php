@@ -420,8 +420,17 @@
 
 								$this->acos_save_controller_plugin($Controller_Action[1], $controller_parent['id'],
 										$message);
+						} else
+						{
+								return $this->out('Your command is wrong.You can see help of Shell');
 						}
 				}
+				/*************************************************
+				*  gradecontroller method
+				*  
+				*  goals : 1.this method is for create grade on table acosroles for example :gradecontroller user users index   
+				*         
+				**************************************************/
 				public function gradecontroller($role = null, $controller = null, $action = null, $create =
 						1, $read = 1, $update = 1, $delete = 1)
 				{
@@ -473,6 +482,12 @@
 								return $this->out("dosent Create new acos becuase of $errors .");
 						}
 				}
+				/*************************************************
+				*  gradeplugin method
+				*  
+				*  goals : 1.this method is for create grade to plugin on table acosroles for example :gradeplugin user AclManager users index   
+				*         
+				**************************************************/
 				public function gradeplugin($role = null, $plugin = null, $controller = null, $action = null,
 						$create = 1, $read = 1, $update = 1, $delete = 1)
 				{
@@ -591,11 +606,13 @@
 				
 				                 2.For create node for example : create plugin AclManager action users/index')], ]])->
 								addSubcommand('gradecontroller', ['help' => __d('cake_acl',
-								'Create a new acos_role'), 'parser' => ['description' => __d('cake_acl',
-								'Creates a new acos_roles for example : role controller action '), ]])->
-								addSubcommand('gradeplugin', ['help' => __d('cake_acl', 'Create a new acos_role'),
-								'parser' => ['description' => __d('cake_acl',
-								'Creates a new acos_roles for example : role plugin controller action '), ]]);
+								'Creates a new acos_roles for example : role controller action'), 'parser' => ['description' =>
+								__d('cake_acl',
+								'For create grade to Controller on table acosroles for example : user users index'), ]])->
+								addSubcommand('gradeplugin', ['help' => __d('cake_acl',
+								'Creates a new acos_roles for example : role plugin controller action '), 'parser' => ['description' =>
+								__d('cake_acl',
+								'For create grade to plugin on table acosroles for example : user AclManager users index '), ]]);
 
 						return $parser;
 				}
