@@ -111,9 +111,9 @@
 
 						$controller_name = null;
 
-						foreach ($parent as $parent)://** check level 2 & eqqual with alias **//
+						foreach ($parent as $parent): //** check level 2 & eqqual with alias **//
 								if ($parent['alias'] == $alias && $parent['parent_id'] == $node['id'])
-								{ 
+								{
 										$controller_name = $parent;
 								}
 						endforeach;
@@ -141,10 +141,10 @@
 
 						$plugin_name = null;
 
-						foreach ($parent as $parent)://** check level 2 & eqqual with alias **//
+						foreach ($parent as $parent): //** check level 2 & eqqual with alias **//
 
 								if ($parent['alias'] == $alias && $parent['parent_id'] == $node['id'])
-								{ 
+								{
 										$plugin_name = $parent;
 								}
 
@@ -175,16 +175,16 @@
 
 						$plugin_name = $controller_root_of_plugin = null;
 
-						foreach ($parent as $parents)://** check level 2 & eqqual with alias **//
+						foreach ($parent as $parents): //** check level 2 & eqqual with alias **//
 								if ($parents['alias'] == $plugin && $parents['parent_id'] == $node['id'])
-								{ 
+								{
 										$plugin_name = $parents;
 								}
 						endforeach;
 
-						foreach ($parent as $parent1)://** check level 3 & eqqual with alias **//
+						foreach ($parent as $parent1): //** check level 3 & eqqual with alias **//
 								if ($parent1['alias'] == 'controller' && $parent1['parent_id'] == $plugin_name['id'])
-								{ 
+								{
 										$controller_root_of_plugin = $parent1;
 								}
 						endforeach;
@@ -216,16 +216,16 @@
 
 						$plugin_name = $controller_root_of_plugin = null;
 
-						foreach ($parent as $parents)://** check level 2 & eqqual with alias **//
+						foreach ($parent as $parents): //** check level 2 & eqqual with alias **//
 								if ($parents['alias'] == $plugin && $parents['parent_id'] == $node['id'])
-								{ 
+								{
 										$plugin_name = $parents;
 								}
 						endforeach;
 
-						foreach ($parent as $parent1)://** check level 3 & eqqual with alias **//
+						foreach ($parent as $parent1): //** check level 3 & eqqual with alias **//
 								if ($parent1['alias'] == 'controller' && $parent1['parent_id'] == $plugin_name['id'])
-								{ 
+								{
 										$controller_root_of_plugin = $parent1;
 								}
 						endforeach;
@@ -245,7 +245,7 @@
 				*  goals : 1. save root
 				*         
 				**************************************************/
-				private function acos_save_root($alias, $parent_id , $message)
+				private function acos_save_root($alias, $parent_id, $message)
 				{
 						$acos = $this->Acos->newEntity();
 
@@ -358,6 +358,9 @@
 
 								$this->acos_save_controller_plugin($name_of_root, $node['id'], $message);
 
+						} else
+						{
+								return $this->out('Your command is wrong.You can see help of Shell');
 						}
 				}
 				/*************************************************
