@@ -41,9 +41,17 @@ for example :
 acos create root plugin
 ```
 ```php
-acos create controller users index
+acos create controller Users index
 ```
 You can see all commands on the help of shell.
+
+## Note
+
+ If you have prefix you must will enter prefix_action for example : admin_index that is like Cakephp 2
+ 
+```php
+acos create controller Resellers admin_index
+```
 
 ## Step 3
 
@@ -110,7 +118,9 @@ public function beforeFilter(Event $event)
 
 # Note
 
- you must change method beforefilter on other controller for example :
+1. If you have prefix you must 
+
+2. You must change method beforefilter on other controller for example :
 
 ```php
 	class UsersController extends AppController
