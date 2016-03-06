@@ -24,11 +24,6 @@
 						$this->Acos = TableRegistry::get('AclManager.Acos');
 				}
 
-				public function beforeFilter(Event $event)
-				{
-
-						debug($this->Auth->allowedActions);
-				}
 
 				public function Check_plugin()
 				{

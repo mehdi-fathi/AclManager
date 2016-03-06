@@ -333,7 +333,7 @@
 								*/
 								$node = $this->_get_Node_children_controller_for_root('controller', $name_of_root);
 
-								$message = "Create new childe by name $name_of_root for parent $parent";
+								$message = "Create new childe by name $action for parent $name_of_root";
 
 								$this->acos_save_controller_plugin($action, $node['id'], $message);
 						} elseif ($create === 'create' && $parent === 'root' && $name_of_root === 'plugin' && empty
