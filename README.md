@@ -118,7 +118,7 @@ public function beforeFilter(Event $event)
 
 ### Make Grade
 
- also you can create Grade via your controller for example :
+Also you can create Grade via your controller for example :
  
  ```php
      $Grade = $this->loadComponent('AclManager.Grade');
@@ -128,9 +128,7 @@ public function beforeFilter(Event $event)
 
 # Note
 
-1. If you have prefix you must 
-
-2. You must change method beforefilter on other controller for example :
+You must change method beforefilter on other controller for example :
 
 ```php
 	class UsersController extends AppController
