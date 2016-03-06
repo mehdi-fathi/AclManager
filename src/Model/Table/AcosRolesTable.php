@@ -70,8 +70,29 @@ class AcosRolesTable extends Table
         $validator
             ->requirePresence('_delete', 'create')
             ->notEmpty('_delete');
+            
+         $validator//** add unique for validation role **//         
+            ->add('role',['unique' =>['rule' =>'validateUnique', 
+            'provider' => 'table', 
+            'message' => 'Is Not unique']]
+            );
+            
+         $validator//** add unique for validation role **//         
+            ->add('aco_id',['unique' =>['rule' =>'unique', 
+            'provider' => 'table', 
+            'message' => 'Is Not unique']]
+            );
 
         return $validator;
+    }
+    public function unique($value, array $context)
+    {            
+              $count = $this->findByAco_id($value)->where(['role_id'=>$context['data']['role_id']])->count();
+    
+                if($count>0)
+                    return false; 
+                 
+                return true; 
     }
 
     /**
@@ -83,8 +104,10 @@ class AcosRolesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+
         $rules->add($rules->existsIn(['aco_id'], 'Acos'));
         $rules->add($rules->existsIn(['role_id'], 'Roles'));
+
         return $rules;
     }
 }
