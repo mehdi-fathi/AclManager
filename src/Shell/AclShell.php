@@ -44,6 +44,31 @@
 						$Acos = $this->loadModel('AclManager.Acos');
 						$AcosRoles = $this->loadModel('AclManager.AcosRoles');
 				}
+                /*************************************************
+				*  show method
+				*  
+				*  goals : 1. show all children
+				*         
+				**************************************************/
+				public function show($input)
+				{
+						$children_type = $this->Acos->findByAlias($input)->where(['parent_id IS NULL'])->
+								find('all')->first();
+
+						if (empty($children_type))
+						{
+								return $this->out('dosent Find acos.');
+						}                       
+						$node = $children_type->toArray();
+						$parent = $this->Acos->find('children', ['for' => $node['id'], 'spacer' => ' ',
+								'valuePath' => 'id', ]);
+
+
+						foreach ($parent as $categoryName)
+						{
+								echo $categoryName['alias'] . "\n";
+						}
+				}
 				/*************************************************
 				*  acos_save_controller_plugin method
 				*  
@@ -612,7 +637,11 @@
 								addSubcommand('gradeplugin', ['help' => __d('cake_acl',
 								'Creates a new acos_roles for example : role plugin controller action '), 'parser' => ['description' =>
 								__d('cake_acl',
-								'For create grade to plugin on table acosroles for example : user AclManager users index '), ]]);
+								'For create grade to plugin on table acosroles for example : user AclManager users index '), ]])->
+								addSubcommand('show', ['help' => __d('cake_acl',
+								'Show all children'), 'parser' => ['description' =>
+								__d('cake_acl',
+								'For Show all children for example :show controller  '), ]]);
 
 						return $parser;
 				}
