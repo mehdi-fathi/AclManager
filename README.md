@@ -116,6 +116,16 @@ public function beforeFilter(Event $event)
 				}
 ```
 
+### Make Grade
+
+ also you can create Grade via your controller for example :
+ 
+ ```php
+     $Grade = $this->loadComponent('AclManager.Grade');
+                                
+     $Grade->gradecontroller('user','users','admin_edit'); //** $Grade->gradecontroller(name of roll,controller,action);  **// 
+  ```
+
 # Note
 
 1. If you have prefix you must 
