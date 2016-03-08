@@ -15,7 +15,14 @@
 		 */
 		class CheckComponent extends Component
 		{
-
+				/*************************************************
+				*  initialize method
+				*  
+				*  this method is behaiver cakephp this always run before run other mehtods 
+				*
+				*  goals : 1. load models
+				*         
+				**************************************************/
 				public function initialize(array $config)
 				{
 
@@ -24,7 +31,12 @@
 						$this->Acos = TableRegistry::get('AclManager.Acos');
 				}
 
-
+				/*************************************************
+				*  Check_plugin method
+				*  
+				*  goals : 1. Check access level for a plugin
+				*         
+				**************************************************/
 				public function Check_plugin()
 				{
 						$role_id_User = $this->request->session()->read('Auth.User.role_id');
@@ -44,10 +56,10 @@
 
 						$parent = $this->Acos->find('children', ['for' => $node['id']]);
 						$plugin_name = null;
-						foreach ($parent as $parents):
+						foreach ($parent as $parents): //** check level 2 & eqqual with alias **//
 
 								if ($parents['alias'] == $plugin && $parents['parent_id'] == $node['id'])
-								{ //** check level 2 & eqqual with alias **//
+								{
 										$plugin_name = $parents;
 								}
 						endforeach;
@@ -55,10 +67,10 @@
 						if (empty($plugin_name))
 								return false;
 
-						foreach ($parent as $parent1):
+						foreach ($parent as $parent1): //** check level 3 & eqqual with alias **//
 
 								if ($parent1['alias'] == 'controller' && $parent1['parent_id'] == $plugin_name['id'])
-								{ //** check level 2 & eqqual with alias **//
+								{
 										$check_controller = $parent1;
 								}
 						endforeach;
@@ -66,10 +78,10 @@
 						if (empty($check_controller))
 								return false;
 
-						foreach ($parent as $parent2):
+						foreach ($parent as $parent2): //** check level 4 & eqqual with alias
 
 								if ($parent2['alias'] == $controller && $parent2['parent_id'] == $check_controller['id'])
-								{ //** check level 2 & eqqual with alias **//
+								{
 										$check_controller_name = $parent2;
 								}
 						endforeach;
@@ -77,10 +89,10 @@
 						if (empty($check_controller_name))
 								return false;
 
-						foreach ($parent as $parent3):
+						foreach ($parent as $parent3): //** check level 5 & eqqual with alias **//
 
 								if ($parent3['alias'] == $action && $parent3['parent_id'] == $check_controller_name['id'])
-								{ //** check level 2 & eqqual with alias **//
+								{
 										$check_action_name = $parent2;
 								}
 						endforeach;
@@ -105,6 +117,12 @@
 						return true;
 
 				}
+                /*************************************************
+				*  Check_controller method
+				*  
+				*  goals : 1. Check access level for a controller
+				*         
+				**************************************************/
 				public function Check_controller()
 				{
 						$Role_id_user = $this->request->session()->read('Auth.User.role_id');
@@ -149,11 +167,9 @@
 										{
 												throw new Exception(false);
 										}
-										//debug($parent_acos->toArray());
 
 										if (!empty($query))
 										{
-												//	debug($query->toArray());
 
 												return $query->toArray();
 
@@ -165,9 +181,15 @@
 										return false;
 								}
 						}
-
 				}
-
+                /*************************************************
+				*  Check_request method (call in controller)
+				*  
+				*  goals : 1. Check access level for a controller 
+                *
+                *          2. Check access level for a plugin
+				*         
+				**************************************************/
 				public function Check_request($type, $allowed_actions)
 				{
 
@@ -202,7 +224,6 @@
 												}
 
 										endforeach;
-
 								}
 
 								if (!$check_action_curent)
@@ -216,7 +237,6 @@
 
 								if (isset($check_action_plugin_curent))
 								{
-
 										foreach ($allowed_actions as $allowed_actions):
 
 												$current_action = strchr($check_action_plugin_curent['aco']['alias'], $this->
@@ -244,7 +264,7 @@
 								if (!$check_action_plugin_curent)
 										return false;
 
-								return false;
+								return true;
 
 						}
 
