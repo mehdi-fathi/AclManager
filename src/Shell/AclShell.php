@@ -344,6 +344,9 @@
 								for example : create controller users
 								*/
 								$node = $this->_get_Node($parent);
+                                
+                                if (empty($node))
+										return $this->out('Dont found ');
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
 
@@ -370,7 +373,10 @@
 								for example : create root plugin
 								*/
 								$message = "Create new root by name plugin";
-
+                                
+                                if (empty($node))
+										return $this->out('Dont found ');
+                                        
 								$this->acos_save_root($name_of_root, null, $message);
 
 						} elseif ($create === 'create' && $parent === 'plugin' && $name_of_root !== 'controller' &&
@@ -380,6 +386,9 @@
 								for example : create plugin AclManager
 								*/
 								$node = $this->_get_Node($parent);
+                                
+                                if (empty($node))
+										return $this->out('Dont found ');
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
 
