@@ -44,7 +44,7 @@
 						$Acos = $this->loadModel('AclManager.Acos');
 						$AcosRoles = $this->loadModel('AclManager.AcosRoles');
 				}
-                /*************************************************
+				/*************************************************
 				*  show method
 				*  
 				*  goals : 1. show all children
@@ -58,11 +58,10 @@
 						if (empty($children_type))
 						{
 								return $this->out('dosent Find acos.');
-						}                       
+						}
 						$node = $children_type->toArray();
 						$parent = $this->Acos->find('children', ['for' => $node['id'], 'spacer' => ' ',
 								'valuePath' => 'id', ]);
-
 
 						foreach ($parent as $categoryName)
 						{
@@ -325,7 +324,7 @@
 				*          4.this method is for create root (action of controller) for plugin as such as : create controller users index
 				*         
 				**************************************************/
-				public function acos($create, $parent, $name_of_root, $action = null)
+				public function acos($create = null, $parent = null, $name_of_root = null, $action = null)
 				{
 						if ($create === 'create' && $parent === 'root' && $name_of_root === 'controller' &&
 								empty($action))
@@ -357,9 +356,9 @@
 								for example : create controller users index
 								*/
 								$node = $this->_get_Node_children_controller_for_root('controller', $name_of_root);
-                                
-                                if(empty($node))
-                                return $this->out('Dont found ');
+
+								if (empty($node))
+										return $this->out('Dont found ');
 
 								$message = "Create new childe by name $action for parent $name_of_root";
 
@@ -380,7 +379,7 @@
 								/*
 								for example : create plugin AclManager
 								*/
-								$node = $this->_get_Node($parent);                              
+								$node = $this->_get_Node($parent);
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
 
@@ -390,7 +389,7 @@
 						{
 								return $this->out('Your command is wrong.You can see help of Shell');
 						}
-                        
+
 				}
 				/*************************************************
 				*  acosplugin method
@@ -401,7 +400,8 @@
 				*
 				*         
 				**************************************************/
-				public function acosplugin($create, $plugin, $name_of_plugin, $root_controller, $name_of_controller)
+				public function acosplugin($create = null, $plugin = null, $name_of_plugin = null, $root_controller = null,
+						$name_of_controller = null)
 				{ //** create controller for plugin **//
 
 						if ($create === 'create' && $plugin === 'plugin' && !empty($name_of_plugin) && $root_controller
@@ -642,10 +642,8 @@
 								'Creates a new acos_roles for example : role plugin controller action '), 'parser' => ['description' =>
 								__d('cake_acl',
 								'For create grade to plugin on table acosroles for example : user AclManager users index '), ]])->
-								addSubcommand('show', ['help' => __d('cake_acl',
-								'Show all children'), 'parser' => ['description' =>
-								__d('cake_acl',
-								'For Show all children for example :show controller  '), ]]);
+								addSubcommand('show', ['help' => __d('cake_acl', 'Show all children'), 'parser' => ['description' =>
+								__d('cake_acl', 'For Show all children for example :show controller  '), ]]);
 
 						return $parser;
 				}
