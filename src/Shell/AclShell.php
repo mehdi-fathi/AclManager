@@ -473,6 +473,9 @@
 						1, $read = 1, $update = 1, $delete = 1)
 				{
 						$parent_controller = $this->_get_Node('controller', 'controller');
+                        
+                        if (empty($parent_controller))
+								return $this->out('dosent Find root controller.you must will create a controller');
 
 						$parent_name_controller = $this->Acos->find('all', ['conditions' => ['Acos.parent_id' =>
 								$parent_controller['id'], 'Acos.alias' => $controller]])->first();
