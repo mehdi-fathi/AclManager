@@ -535,6 +535,9 @@
 
 						$children_type = $this->Acos->findByAlias('plugin')->where(['parent_id IS NULL'])->
 								find('all');
+                                
+                        if (empty($children_type))
+								return $this->out('dosent Find root controller.you must will create a root plugin');
 
 						$node = $children_type->first()->toArray();
 
