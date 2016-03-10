@@ -60,8 +60,7 @@
 								return $this->out('dosent Find acos.');
 						}
 						$node = $children_type->toArray();
-						$parent = $this->Acos->find('children', ['for' => $node['id'], 'spacer' => ' ',
-								'valuePath' => 'id', ]);
+						$parent = $this->Acos->find('children', ['for' => $node['id'], ]);
 
 						foreach ($parent as $categoryName)
 						{
@@ -344,8 +343,8 @@
 								for example : create controller users
 								*/
 								$node = $this->_get_Node($parent);
-                                
-                                if (empty($node))
+
+								if (empty($node))
 										return $this->out('Dont found ');
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
@@ -373,10 +372,10 @@
 								for example : create root plugin
 								*/
 								$message = "Create new root by name plugin";
-                                
-                                if (empty($node))
+
+								if (empty($node))
 										return $this->out('Dont found ');
-                                        
+
 								$this->acos_save_root($name_of_root, null, $message);
 
 						} elseif ($create === 'create' && $parent === 'plugin' && $name_of_root !== 'controller' &&
@@ -386,8 +385,8 @@
 								for example : create plugin AclManager
 								*/
 								$node = $this->_get_Node($parent);
-                                
-                                if (empty($node))
+
+								if (empty($node))
 										return $this->out('Dont found ');
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
@@ -473,8 +472,8 @@
 						1, $read = 1, $update = 1, $delete = 1)
 				{
 						$parent_controller = $this->_get_Node('controller', 'controller');
-                        
-                        if (empty($parent_controller))
+
+						if (empty($parent_controller))
 								return $this->out('dosent Find root controller.you must will create a controller');
 
 						$parent_name_controller = $this->Acos->find('all', ['conditions' => ['Acos.parent_id' =>
@@ -535,8 +534,8 @@
 
 						$children_type = $this->Acos->findByAlias('plugin')->where(['parent_id IS NULL'])->
 								find('all');
-                                
-                        if (empty($children_type))
+
+						if (empty($children_type))
 								return $this->out('dosent Find root controller.you must will create a root plugin');
 
 						$node = $children_type->first()->toArray();
