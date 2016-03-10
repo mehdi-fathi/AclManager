@@ -357,6 +357,9 @@
 								for example : create controller users index
 								*/
 								$node = $this->_get_Node_children_controller_for_root('controller', $name_of_root);
+                                
+                                if(empty($node))
+                                return $this->out('Dont found ');
 
 								$message = "Create new childe by name $action for parent $name_of_root";
 
@@ -377,7 +380,7 @@
 								/*
 								for example : create plugin AclManager
 								*/
-								$node = $this->_get_Node($parent);
+								$node = $this->_get_Node($parent);                              
 
 								$message = "Create new childe by name $name_of_root for parent $parent";
 
@@ -387,6 +390,7 @@
 						{
 								return $this->out('Your command is wrong.You can see help of Shell');
 						}
+                        
 				}
 				/*************************************************
 				*  acosplugin method
