@@ -26,7 +26,7 @@
 						$this->displayField('id');
 						$this->primaryKey('id');
 						$this->belongsToMany('Acos', ['foreignKey' => 'role_id', 'targetForeignKey' =>
-								'aco_id', 'joinTable' => 'acos_roles', 'className' => 'AclManager.Acos']);
+								'aco_id', 'joinTable' => 'acos_roles', 'className' => 'AclManager.Acos']);                    
 
 				}
 

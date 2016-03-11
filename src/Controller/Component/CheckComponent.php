@@ -4,11 +4,11 @@
 
 		use Cake\Controller\Component;
 		use Cake\Controller\ComponentRegistry;
-
 		use Cake\Event\Event;
 		use Cake\ORM\TableRegistry;
-		use \AclManager\Controller;
 		use Cake\Core\Exception\Exception;
+        use Cake\Utility\Security;
+        
 
 		/**
 		 * Check component
@@ -29,6 +29,7 @@
 						$this->AcosRoles = TableRegistry::get('AclManager.AcosRoles');
 
 						$this->Acos = TableRegistry::get('AclManager.Acos');
+
 				}
 
 				/*************************************************

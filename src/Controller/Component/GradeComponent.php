@@ -4,10 +4,8 @@
 
 		use Cake\Controller\Component;
 		use Cake\Controller\ComponentRegistry;
-
 		use Cake\Event\Event;
 		use Cake\ORM\TableRegistry;
-		use \AclManager\Controller;
 		use Cake\Core\Exception\Exception;
 
 		/**
@@ -62,7 +60,6 @@
 						$parent_name_controller = $this->Acos->find('all', ['conditions' => ['Acos.parent_id' =>
 								$parent_controller['id'], 'Acos.alias' => $controller]])->first();
 
-						//	$selection = $this->in('Red or Green?', ['R', 'G'], 'R');<br />
 						$aco = $this->Acos->find('all', ['contain' => ['ParentAcos'], 'conditions' => ['Acos.alias' =>
 								$action, 'Acos.parent_id' => $parent_name_controller['id']]]);
 
@@ -132,10 +129,10 @@
 								}
 						endforeach;
 
-						if (empty($plugin_name))//** check level 3 & eqqual with alias **//
+						if (empty($plugin_name))
 								return $this->out("dosent Find $plugin_name.");
 
-						foreach ($parent as $parent1): 
+						foreach ($parent as $parent1): //** check level 3 & eqqual with alias **//
 
 								if ($parent1['alias'] == 'controller' && $parent1['parent_id'] == $plugin_name['id'])
 								{
