@@ -112,7 +112,7 @@
 
 						$AcosRoles = $AcosRoles->first();
 
-						if (empty($AcosRoles))
+						if (empty($AcosRoles) ||  $AcosRoles->toArray()['_read']<>1)
 								return false;
 
 						return true;
@@ -142,6 +142,7 @@
 								try
 								{
 										$curent_action = $Action;
+                                        
 										if (isset($Prefix))
 												$curent_action = $Prefix . '_' . $Action;
 
@@ -157,14 +158,14 @@
 
 										if (empty($query['aco']['parent_aco']))
 										{
-												throw new Exception('false');
+												throw new Exception(false);
 										}
 
 										$id_parent = $query['aco']['parent_aco']->toArray()['parent_id'];
 
 										$parent_acos = $this->Acos->findById($id_parent)->first();
-
-										if (empty($parent_acos))
+                                   
+										if (empty($parent_acos) || $query->toArray()['_read']<>1)
 										{
 												throw new Exception(false);
 										}
@@ -178,7 +179,6 @@
 								}
 								catch (exception $e)
 								{
-
 										return false;
 								}
 						}
@@ -193,10 +193,8 @@
 				**************************************************/
 				public function Check_request($type, $allowed_actions)
 				{
-
 						if ($type == 'controller')
 						{
-
 								$check_action_curent = $this->Check_controller();
 
 								if (isset($check_action_curent))
