@@ -293,13 +293,15 @@
 				*  goals : 1. save role for example :create Admin admin
 				*         
 				**************************************************/
-				public function role($role_input, $alias)
+				public function role($role_input = null, $alias = null)
 				{
 						$role = $this->Roles->newEntity();
 
 						$data = array('role' => $role_input, 'alias' => $alias);
 
 						$role = $this->Roles->patchEntity($role, $data);
+                        
+                        if(!empty($role_input) && !empty($alias)){
 
 						if ($this->Roles->save($role))
 						{
@@ -310,6 +312,11 @@
 
 								return $this->out("dosen't Create new role becuase of $s.");
 						}
+                        }
+                        else
+                        {
+                            return $this->out('You must enter alias and role of name');
+                        }
 				}
 
 				/*************************************************
@@ -355,6 +362,7 @@
 						} elseif ($create === 'create' && $parent === 'controller' && $name_of_root !==
 						'controller' && $name_of_root !== 'plugin' && !empty($action))
 						{
+						  debug($name_of_root);
 								/*
 								for example : create controller users index
 								*/
