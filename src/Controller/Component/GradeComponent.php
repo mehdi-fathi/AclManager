@@ -6,7 +6,6 @@
 		use Cake\Controller\ComponentRegistry;
 		use Cake\Event\Event;
 		use Cake\ORM\TableRegistry;
-		use Cake\Core\Exception\Exception;
 
 		/**
 		 * Grade component

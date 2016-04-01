@@ -40,6 +40,7 @@
 				public function initialize()
 				{
 						parent::initialize();
+                        
 						$Roles = $this->loadModel('AclManager.Roles');
 						$Acos = $this->loadModel('AclManager.Acos');
 						$AcosRoles = $this->loadModel('AclManager.AcosRoles');
