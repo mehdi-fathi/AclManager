@@ -362,7 +362,6 @@
 						} elseif ($create === 'create' && $parent === 'controller' && $name_of_root !==
 						'controller' && $name_of_root !== 'plugin' && !empty($action))
 						{
-						  debug($name_of_root);
 								/*
 								for example : create controller users index
 								*/
