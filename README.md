@@ -7,16 +7,16 @@ This is a stable plugin for CakePHP 3.0 at this time.This is like Acl on cakephp
 
 you can by use of AclManager create access level for all users.also this is for access level plugin and controller
 
-## Installing via composer
+# AclManager plugin for CakePHP
 
-You can install this plugin into your CakePHP application using
-[composer](http://getcomposer.org). For existing applications you can add the
-following to your `composer.json` file:
+## Installation
 
-```javascript
-"require": {
-	"mehdi-fathi/AclManager": "dev-master"
-}
+You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
+
+The recommended way to install composer packages is:
+
+```
+composer require mehdi-fathi/AclManager
 ```
 
 # configrations
