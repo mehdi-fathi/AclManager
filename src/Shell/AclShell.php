@@ -650,11 +650,11 @@
 				
 				                 2.For create node for example : create plugin AclManager action users/index')], ]])->
 								addSubcommand('gradecontroller', ['help' => __d('cake_acl',
-								'Creates a new acos_roles for example : role controller action'), 'parser' => ['description' =>
+								'Create a new acos_roles for example : role controller action'), 'parser' => ['description' =>
 								__d('cake_acl',
 								'For create grade to Controller on table acosroles for example : user users index'), ]])->
 								addSubcommand('gradeplugin', ['help' => __d('cake_acl',
-								'Creates a new acos_roles for example : role plugin controller action '), 'parser' => ['description' =>
+								'Create a new acos_roles for example : role plugin controller action '), 'parser' => ['description' =>
 								__d('cake_acl',
 								'For create grade to plugin on table acosroles for example : user AclManager users index '), ]])->
 								addSubcommand('show', ['help' => __d('cake_acl', 'Show all children'), 'parser' => ['description' =>
