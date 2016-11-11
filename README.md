@@ -86,29 +86,6 @@ you must write this code on method isAuthorized Appcontroller :
 
 you must write this code on method isAuthorized Appcontroller on your plugin :
 
-```php
-public function beforeFilter(Event $event)
-				{
-
-						$this->Auth->allow(['delete']);
-
-						$auth = $this->request->session()->read('Auth.User.role_id');
-
-						if (!empty($auth))
-						{
-								$AclManager = $this->loadComponent('AclManager.Check');
-
-								$check_action_plugin_curent = $AclManager->Check_plugin();
-
-								$this->Auth->config(['loginRedirect' => ['controller' => 'roles', 'action' =>
-										'index']]);
-
-								if (!$check_action_plugin_curent)
-										return $this->redirect($this->Auth->redirectUrl());
-						}
-				}
-```
-
 ### Make Grade
 
 Also you can create Grade via your controller for example :
