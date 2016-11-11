@@ -57,41 +57,34 @@ acos create controller Resellers admin_index
 
 ### Controller
 
-you must write this code on method beforfilter Appcontroller :
+you must write this code on method isAuthorized Appcontroller :
 
 ```php
-public function beforeFilter(Event $event)
+	public function isAuthorized($user)
+	{
+		if (empty($this->request->params['plugin']))
+		{
+			$AclManager = $this->loadComponent('AclManager.Check');
+			if (empty($this->request->params['plugin']))
+			{
+
+				$check_action_curent = $AclManager->Check_request('controller', $this->Auth->
+				allowedActions);
+
+				if (!$check_action_curent)
 				{
-            if (empty($this->request->params['plugin']))
-						{
-
-								$auth = $this->request->session()->read('Auth.User.role_id');
-
-								if (!empty($auth))
-								{
-										$AclManager = $this->loadComponent('AclManager.Check');
-
-									if (empty($this->request->params['plugin']))
-									{
-
-										$check_action_curent = $AclManager->Check_request('controller', $this->Auth->
-														allowedActions);
-
-										$this->Auth->config(['loginRedirect' => ['controller' => 'users', 'action' =>
-														'index']]);
-														
-										if (!$check_action_curent)											
-											return $this->redirect($this->Auth->redirectUrl());
-
-
-									}
-								}
-						}
+					return false;
+				}else {
+					return true;
 				}
+
+			}
+		}
+	}
 ```
 ### plugin
 
-you must write this code on method beforfilter Appcontroller on your plugin :
+you must write this code on method isAuthorized Appcontroller on your plugin :
 
 ```php
 public function beforeFilter(Event $event)
