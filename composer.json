@@ -1,5 +1,5 @@
 {
-    "name": "AclManager/Acl",
+    "name": "acl-manager/acl",
     "description": "AclManager plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
