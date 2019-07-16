@@ -60,27 +60,27 @@ acos create controller Resellers admin_index
 you must write this code on method isAuthorized Appcontroller :
 
 ```php
-	public function isAuthorized($user)
-	{
-		if (empty($this->request->params['plugin']))
-		{
-			$AclManager = $this->loadComponent('AclManager.Check');
-			if (empty($this->request->params['plugin']))
-			{
+public function isAuthorized($user)
+{
+    if (empty($this->request->params['plugin']))
+    {
+        $AclManager = $this->loadComponent('AclManager.Check');
+        if (empty($this->request->params['plugin']))
+        {
 
-				$check_action_curent = $AclManager->Check_request('controller', $this->Auth->
-				allowedActions);
+            $check_action_curent = $AclManager->Check_request('controller', $this->Auth->
+            allowedActions);
 
-				if (!$check_action_curent)
-				{
-					return false;
-				}else {
-					return true;
-				}
+            if (!$check_action_curent)
+            {
+                return false;
+            }else {
+                return true;
+            }
 
-			}
-		}
-	}
+        }
+    }
+}
 ```
 ### plugin
 
@@ -101,14 +101,14 @@ Also you can create Grade via your controller for example :
 You must change method beforefilter on other controller for example :
 
 ```php
-	class UsersController extends AppController
-		{
-	public function beforeFilter(Event $event = null)
-				{
-                         $this->Auth->allow(['edit']);
-						 parent::beforeFilter($event);//** we must have parent beforfilter **//
-				}
-		}
+class UsersController extends AppController
+{
+    public function beforeFilter(Event $event = null)
+    {
+        $this->Auth->allow(['edit']);
+        parent::beforeFilter($event);//** we must have parent beforfilter **//
+    }
+}
 ```
 This code is for dosen't check action edit in plugin Acl.Thats why you allow edit on Auth.This plugin needs develope for will be complete
 
